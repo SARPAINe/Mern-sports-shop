@@ -1,0 +1,14 @@
+.header {
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    width: var(--max-width);
+    margin: 0 var(--left-space);
+    height: 5rem;
+    /* background-color: #8a2b06;
+    color: white; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-width);
+}

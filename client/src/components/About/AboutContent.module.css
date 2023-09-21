@@ -1,0 +1,11 @@
+.about {
+    margin: var(--left-space);
+    display: flex;
+    justify-content: space-between;
+}
+.story {
+    padding-left: 5%;
+}
+.image img {
+    min-width: 50%;
+}

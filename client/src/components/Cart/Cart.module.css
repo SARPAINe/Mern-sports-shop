@@ -1,0 +1,13 @@
+.cart {
+    display: flex;
+    align-items: center;
+}
+.cart span {
+    /* display: inline-block; */
+    color: black;
+    font-size: var(--logo-text-weight);
+}
+.cart span::after {
+    content: "";
+    margin-left: 5px;
+}

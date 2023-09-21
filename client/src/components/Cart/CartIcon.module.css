@@ -1,0 +1,10 @@
+.cart-icon {
+    color: var(--theme-color);
+    font-size: var(--logo-text-weight);
+}
+.count {
+    background-color: var(--theme-color);
+    font-size: small;
+    border-radius: 50%;
+    padding: 5px 10px;
+}

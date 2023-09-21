@@ -1,0 +1,30 @@
+.layout {
+    background-color: var(--theme-color-light);
+    /* display: flex; */
+    font-weight: bolder;
+    font-size: 40px;
+    padding: 30px 0;
+}
+.breadcrumb {
+    margin: 0 var(--left-space);
+}
+
+.breadcrumb > * {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.breadcrumb .crumb:after {
+    content: ">";
+    margin-left: 10px;
+}
+
+.breadcrumb .crumb:last-child::after {
+    display: none;
+}
+.crumb a {
+    color: var(--theme-color);
+}
+.crumb a:hover {
+    color: rgb(8, 99, 132);
+}

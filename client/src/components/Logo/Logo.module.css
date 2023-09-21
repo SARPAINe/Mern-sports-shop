@@ -1,0 +1,11 @@
+.logo {
+    padding: 5px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.first-name {
+    font-size: var(--logo-text-weight);
+}
+.last-name {
+    font-size: var(--logo-text-weight);
+    color: var(--theme-color);
+}

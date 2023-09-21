@@ -1,0 +1,10 @@
+.pagination {
+    padding: 10px 25px;
+    background-color: var(--theme-color-light);
+    margin-right: 15px;
+    border-radius: 15%;
+}
+.pagination a:hover {
+    /* color: var(--theme-color); */
+    font: italic;
+}

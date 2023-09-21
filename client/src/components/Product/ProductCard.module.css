@@ -1,0 +1,29 @@
+.product_card {
+    display: flex;
+    flex-direction: column;
+    padding: auto 5%;
+    width: 350px;
+    justify-content: center;
+    /* min-width: 30%; */
+    /* min-width: 300px; */
+}
+
+.card_footer {
+    display: flex;
+    justify-content: space-between;
+    /* max-width: 100%; */
+}
+
+.title {
+    /* max-width: 80%; */
+}
+
+.image img {
+    width: 350px;
+    height: 350px;
+    border-radius: 5%;
+}
+.price {
+    max-width: 20%;
+    color: var(--theme-color);
+}
