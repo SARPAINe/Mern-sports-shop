@@ -5,6 +5,7 @@ import Products from "../src/pages/Products";
 import Home from "../src/pages/Home";
 import { productLoader } from "../src/pages/Products";
 import { productDetailLoader } from "../src/pages/ProductDetail";
+import { action } from "../src/components/Auth/LoginForm";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element: <Login></Login>,
+                action: action,
             },
             {
                 path: "about",

@@ -1,0 +1,10 @@
+.form_container {
+    display: flex;
+    margin: var(--left-space);
+    justify-content: center;
+    background-color: var(--theme-color-light);
+}
+
+.form_container form input {
+    display: block;
+}

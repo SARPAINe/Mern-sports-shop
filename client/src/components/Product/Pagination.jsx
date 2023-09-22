@@ -33,18 +33,26 @@ const Pagination = ({ linkContents, numberOfPages }) => {
         linkValues[numberOfPages + 1] = String(Number(page) + 1);
     }
     const paginationContent = linkContents.map((link, index) => (
-        <div className={classes.pagination}>
+        <button
+            className={`${classes.pagination} ${
+                linkValues[index] == null ? classes["button-disabled"] : ""
+            }`}
+            disabled={linkValues[index] == null}
+        >
             <Link
-                key={link}
+                key={index}
+                className={
+                    linkValues[index] == null ? classes[`disabled-link`] : ""
+                }
                 to={
-                    queryParams
+                    queryParams !== "undefined"
                         ? `${queryParams}&page=${linkValues[index]}`
                         : `?page=${linkValues[index]}`
                 }
             >
                 {link}
             </Link>
-        </div>
+        </button>
     ));
     return paginationContent;
 };

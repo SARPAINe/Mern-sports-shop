@@ -47,7 +47,25 @@ app.use(
     })
 );
 app.use(helmet());
-app.use(cors());
+// app.use(
+//     cors({
+//         origin: "http://localhost:5173",
+//         credentials: "true",
+//     })
+// );
+app.use(function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET, POST, PUT, PATCH, DELETE"
+    );
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-with, Content-Type, Accept, Authorization"
+    );
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    next();
+});
 app.use(xss());
 app.use(mongoSanitize());
 

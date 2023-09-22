@@ -1,3 +1,4 @@
-.user {
+.user_container {
+    display: flex;
     font-size: var(--logo-text-weight);
 }
