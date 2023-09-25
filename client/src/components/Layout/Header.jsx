@@ -8,16 +8,12 @@ import UsernameContext from "./UsernameContext";
 
 const Header = (props) => {
     const location = useLocation();
-    const path = location.pathname;
-    const [userName, setUserName] = useState();
     return (
-        <UsernameContext.Provider value={{ userName, setUserName }}>
-            <header className={`${classes.header} ${classes.test}`}>
-                <Logo />
-                <Navbar />
-                <Profile />
-            </header>
-        </UsernameContext.Provider>
+        <header className={`${classes.header} ${classes.test}`}>
+            <Logo />
+            <Navbar />
+            <Profile />
+        </header>
     );
 };
 export default Header;

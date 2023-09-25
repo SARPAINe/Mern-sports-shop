@@ -25,6 +25,11 @@ const LoginForm = () => {
         formIsValid = true;
     }
 
+    const loginSubmitHandler = (event) => {
+        event.preventDefault();
+        console.log(enteredEmail, enteredPassword);
+    };
+
     return (
         <>
             <div className={classes.form_container}>

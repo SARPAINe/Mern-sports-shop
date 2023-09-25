@@ -1,12 +1,12 @@
 import classes from "./User.module.css";
-import { Link } from "react-router-dom";
+import { Link, useSubmit } from "react-router-dom";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import _ from "lodash";
-import UsernameContext from "./UsernameContext";
 const User = () => {
-    const { userName, setUserName } = useContext(UsernameContext);
+    const [userName, setUserName] = useState();
     const [userId, setUserId] = useState();
+    const submit = useSubmit();
     useEffect(() => {
         const showMe = async () => {
             let res = await axios.get(
@@ -21,6 +21,11 @@ const User = () => {
         showMe();
         console.log("Entered");
     }, [userName]);
+
+    const logoutHandler = () => {
+        submit(null, { method: "delete" });
+    };
+
     const userContent = userName ? (
         <div className={classes.user_container}>
             <div className={classes.profile}>
@@ -29,7 +34,10 @@ const User = () => {
                 </Link>
             </div>
             <div>
-                <Link to="/logout">Logout</Link>
+                {/* <Link to="/logout" onClick={logoutHandler}>
+                    Logout
+                </Link> */}
+                <button onClick={logoutHandler}>Logout</button>
             </div>
         </div>
     ) : (

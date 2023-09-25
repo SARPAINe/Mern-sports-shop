@@ -6,6 +6,7 @@ const RootLayout = (props) => {
         <>
             <Header></Header>
             <main>
+                {console.log("reloaded")}
                 <Outlet></Outlet>
             </main>
             <Footer />
