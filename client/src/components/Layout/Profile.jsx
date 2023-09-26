@@ -1,11 +1,11 @@
 import Cart from "../Cart/Cart";
 import User from "./User";
 import classes from "./Profile.module.css";
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className={classes.profile}>
             <Cart></Cart>
-            <User></User>
+            <User user={props.user}></User>
         </div>
     );
 };

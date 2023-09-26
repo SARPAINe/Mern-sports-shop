@@ -4,7 +4,6 @@ import Profile from "./Profile";
 import Logo from "../Logo/Logo";
 import classes from "./Header.module.css";
 import Navbar from "./Navbar";
-import UsernameContext from "./UsernameContext";
 
 const Header = (props) => {
     const location = useLocation();
@@ -12,7 +11,7 @@ const Header = (props) => {
         <header className={`${classes.header} ${classes.test}`}>
             <Logo />
             <Navbar />
-            <Profile />
+            <Profile user={props.user} />
         </header>
     );
 };

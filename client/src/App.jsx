@@ -16,8 +16,6 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
-        loader: tokenLoader,
-        action: logoutAction,
         children: [
             { index: true, element: <Home /> },
             {
