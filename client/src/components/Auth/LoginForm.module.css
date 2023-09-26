@@ -8,3 +8,6 @@
 .form_container form input {
     display: block;
 }
+.form_container form label {
+    font-weight: var(--logo-text-weight);
+}

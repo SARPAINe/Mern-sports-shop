@@ -11,11 +11,15 @@ import Login from "./pages/Login";
 import Logout from "./components/Auth/Logout";
 import { tokenLoader } from "./util/auth";
 import { action as logoutAction } from "./components/Auth/Logout";
+import { loader as authLoader } from "./components/Layout/RootLayout";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
+        loader: authLoader,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             { index: true, element: <Home /> },
             {
