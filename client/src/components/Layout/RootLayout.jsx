@@ -25,11 +25,13 @@ const RootLayout = (props) => {
                     }
                 );
             } catch (err) {
-                if (err.message) {
-                    throw json({ message: err.message }, { status: 500 });
-                } else if (err.response.status === 401) {
+                if (err.response.status === 401) {
                     setUserName(null);
                     setUserId(null);
+                }
+                if (err.message) {
+                    console.log(err.message);
+                    throw json({ message: err.message }, { status: 500 });
                 }
                 return;
             }
