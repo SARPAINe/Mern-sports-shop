@@ -27,31 +27,44 @@ const LoginForm = () => {
 
     const loginSubmitHandler = (event) => {
         event.preventDefault();
-        console.log(enteredEmail, enteredPassword);
+        resetEmail();
+        resetPassword();
     };
 
     return (
         <>
             <div className={classes.form_container}>
                 <Form method="post">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        onChange={emailChangeHandler}
-                        onBlur={emailBlurHandler}
-                        value={enteredEmail}
-                    ></input>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        onChange={passwordChangeHandler}
-                        onBlur={passwordBlurHandler}
-                        value={enteredPassword}
-                    ></input>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            onChange={emailChangeHandler}
+                            onBlur={emailBlurHandler}
+                            value={enteredEmail}
+                        ></input>
+                        {emailHasError && (
+                            <p className="error-text">Input must be an Email</p>
+                        )}
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            onChange={passwordChangeHandler}
+                            onBlur={passwordBlurHandler}
+                            value={enteredPassword}
+                        ></input>
+                        {passwordHasError && (
+                            <p className="error-text">
+                                Valid password must have at least 6 characters
+                            </p>
+                        )}
+                    </div>
                     <button disabled={!formIsValid}>Login</button>
                 </Form>
             </div>
