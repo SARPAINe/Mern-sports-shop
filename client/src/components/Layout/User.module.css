@@ -1,13 +1,14 @@
 .user_container {
-    display: flex;
-    font-size: var(--logo-text-weight);
+  display: flex;
+  font-size: var(--logo-text-weight);
 }
 .user_container button {
-    font-size: inherit;
-    background-color: inherit;
-    border: none;
+  font-size: inherit;
+  background-color: inherit;
+  border: none;
 }
 .user_container button:hover {
-    color: var(--theme-color);
-    border-bottom: 1px solid var(--theme-color);
+  color: var(--theme-color);
+  border-bottom: 1px solid var(--theme-color);
+  cursor: pointer;
 }

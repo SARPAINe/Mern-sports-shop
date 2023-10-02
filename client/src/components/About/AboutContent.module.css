@@ -1,11 +1,28 @@
 .about {
-    margin: var(--left-space);
-    display: flex;
-    justify-content: space-between;
+  margin: var(--left-space);
+  display: flex;
+  justify-content: space-between;
 }
 .story {
-    padding-left: 5%;
+  padding-left: 5%;
 }
 .image img {
-    min-width: 50%;
+  min-width: 50%;
+}
+/* max width means specified width and smaller than that */
+@media only screen and (max-width: 1200px) {
+  .about {
+    display: grid;
+  }
+  .story {
+    padding: 5% 0;
+  }
+  .image {
+    display: flex;
+    justify-content: center;
+  }
+  .image img {
+    width: 100%;
+    height: auto;
+  }
 }
