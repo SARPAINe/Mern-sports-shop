@@ -29,10 +29,11 @@ const ErrorPage = () => {
     return (
         <>
             {/* <RootLayout> */}
-            <PageContent title={title}>
+            {/* <PageContent title={title}>
                 <p>{message}</p>
-            </PageContent>
+            </PageContent> */}
             {/* </RootLayout> */}
+            <p>an error occured</p>
         </>
     );
 };

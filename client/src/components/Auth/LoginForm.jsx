@@ -1,6 +1,6 @@
 import useInput from "../../hooks/use-input";
 import classes from "./LoginForm.module.css";
-import { Form, json, redirect } from "react-router-dom";
+import { Form, json, redirect, useRouteLoaderData } from "react-router-dom";
 const LoginForm = () => {
     const {
         value: enteredEmail,
@@ -35,6 +35,7 @@ const LoginForm = () => {
         <>
             <div className={classes.form_container}>
                 <Form method="post">
+                    <p className={classes.title}>Login Form</p>
                     <div>
                         <label htmlFor="email">Email</label>
                         <input
@@ -81,8 +82,6 @@ export const action = async ({ request, params }) => {
         password: data.get("password"),
     };
 
-    console.log(loginData);
-
     let url = "http://localhost:5000/api/v1/auth/login";
 
     const response = await fetch(url, {
@@ -90,16 +89,20 @@ export const action = async ({ request, params }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
         credentials: "include",
+        //without credentials cookies won't be saved to browser
     });
 
+    const responseJson = await response.json();
+
     if (response.status === 422) {
-        console.log(response);
         return response;
     }
 
     if (!response.ok) {
-        console.log(response);
-        throw json({ message: "Could not login." }, { status: 500 });
+        throw json(
+            { message: `Could not login - ${responseJson.msg} ` },
+            { status: 500 }
+        );
     }
 
     return redirect("/");

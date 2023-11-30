@@ -1,10 +1,11 @@
+import HomeContent from "../components/Home/HomeContent";
 import BreadCrumb from "../components/Layout/BreadCrumb";
 
 const Home = (props) => {
     return (
         <>
             <BreadCrumb></BreadCrumb>
-            <p>Home page</p>
+            <HomeContent></HomeContent>
         </>
     );
 };

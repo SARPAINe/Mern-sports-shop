@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import classes from "./Navbar.module.css";
 
-const Navbar = (props) => {
+const Navbar = () => {
     return (
         <div className={classes.navbar}>
             <Link to={"/"}>Home</Link>

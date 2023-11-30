@@ -9,7 +9,6 @@ import { action } from "../src/components/Auth/LoginForm";
 import ProductDetail from "./pages/ProductDetail";
 import Login from "./pages/Login";
 import Logout from "./components/Auth/Logout";
-import { tokenLoader } from "./util/auth";
 import { action as logoutAction } from "./components/Auth/Logout";
 import { loader as authLoader } from "./components/Layout/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
@@ -19,6 +18,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <RootLayout />,
         loader: authLoader,
+        id: "root",
         errorElement: <ErrorPage></ErrorPage>,
         children: [
             { index: true, element: <Home /> },

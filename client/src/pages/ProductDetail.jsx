@@ -1,17 +1,35 @@
-import { useLoaderData, useLocation } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import BreadCrumb from "../components/Layout/BreadCrumb";
 
 const ProductDetail = () => {
     const loaderData = useLoaderData();
     const product = loaderData.product;
     const name = product.name;
-    console.log(name);
+    console.log(product);
 
     let crumbs = ["Products", name];
+    const backToAllProductsStyle = {
+        // margin: "400px var(--left-space)",
+        // padding: "20px 0",
+        backgroundColor: "var(--theme-color)",
+        color: "white",
+        borderRadius: "4%",
+        fontSize: "20px",
+    };
 
     return (
         <>
             <BreadCrumb crumbs={crumbs}></BreadCrumb>
+            <div
+                style={{
+                    // display: "inline-block",
+                    marginTop: "10px",
+                    marginLeft: "var(--left-space)",
+                    // width: "200px",
+                }}
+            >
+                <Link style={backToAllProductsStyle}>Back to products</Link>
+            </div>
         </>
     );
 };

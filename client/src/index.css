@@ -28,4 +28,7 @@ body {
 
 .error-text {
     color: #b40e0e;
+    max-width: 100%;
+    /* word-wrap: break-word; */
+    font-size: 13px;
 }
