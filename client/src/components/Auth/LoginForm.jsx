@@ -82,7 +82,7 @@ export const action = async ({ request, params }) => {
         password: data.get("password"),
     };
 
-    let url = "http://localhost:5000/api/v1/auth/login";
+    let url = `${process.env.server_url}/api/v1/auth/login`;
 
     const response = await fetch(url, {
         method: "POST",

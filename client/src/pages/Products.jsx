@@ -32,7 +32,7 @@ export default Products;
 
 export const productLoader = async ({ request }) => {
     //server url
-    const requestUrl = "http://localhost:5000/api/v1/products";
+    const requestUrl = `${process.env.server_url}/api/v1/products`;
     const finalRequestUrl = new URL(requestUrl);
 
     const url = new URL(request.url);

@@ -37,7 +37,7 @@ export default ProductDetail;
 
 export const productDetailLoader = async ({ req, params }) => {
     const response = await fetch(
-        `http://localhost:5000/api/v1/products/${params.id}`
+        `${process.env.server_url}/api/v1/products/${params.id}`
     );
 
     //when an error gets thrown in a loader react router will simply render the closest error element

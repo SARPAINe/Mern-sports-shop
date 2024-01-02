@@ -6,6 +6,7 @@ const RootLayout = (props) => {
     const [userName, setUserName] = useState();
     const [userId, setUserId] = useState();
     let loaderData = useLoaderData();
+    console.log(process.env.test);
 
     useEffect(() => {
         if (loaderData && loaderData !== "logged out") {
@@ -31,7 +32,7 @@ const RootLayout = (props) => {
 export default RootLayout;
 
 export const loader = async ({ request, params }) => {
-    const requestUrl = "http://localhost:5000/api/v1/users/showMe";
+    const requestUrl = `${process.env.server_url}/api/v1/users/showMe`;
 
     const response = await fetch(requestUrl, {
         credentials: "include",

@@ -7,7 +7,7 @@ const Logout = () => {
 };
 export default Logout;
 export const action = async ({ params, request }) => {
-    let url = "http://localhost:5000/api/v1/auth/logout";
+    let url = `${process.env.server_url}/api/v1/auth/logout`;
 
     const response = await fetch(url, {
         method: request.method,
