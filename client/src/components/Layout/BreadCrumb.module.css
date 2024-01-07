@@ -4,9 +4,9 @@
     font-weight: bolder;
     font-size: 40px;
     padding: 30px 0;
+    margin: 0 var(--left-space);
 }
 .breadcrumb {
-    margin: 0 var(--left-space);
 }
 
 .breadcrumb > * {

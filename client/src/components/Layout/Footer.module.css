@@ -3,4 +3,5 @@
     text-align: center;
     margin: 0;
     padding: 30px;
+    margin: 0 var(--left-space);
 }
