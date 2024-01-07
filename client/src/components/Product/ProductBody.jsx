@@ -3,12 +3,17 @@ import BreadCrumb from "../Layout/BreadCrumb";
 import Pagination from "./Pagination";
 import PageNumber from "./Pagination";
 import classes from "./ProductBody.module.css";
+import { useState } from "react";
 
 const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const sortOptionValue = searchParams.get("sort");
 
     const onChangeHandlerSort = (event) => {
-        setSearchParams({ sort: event.target.value });
+        setSearchParams((prevSearchParams) => ({
+            ...prevSearchParams,
+            sort: event.target.value,
+        }));
     };
 
     const productInfoContent = (
@@ -22,6 +27,7 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
                     id="sort"
                     className={classes[`sort-input`]}
                     onChange={onChangeHandlerSort}
+                    value={sortOptionValue}
                 >
                     <option value="lowest">price (lowest)</option>
                     <option value="highest">price (highest)</option>

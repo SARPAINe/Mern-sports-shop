@@ -44,3 +44,14 @@
     display: flex;
     justify-content: end;
 }
+
+/* Media query for small screens */
+@media screen and (max-width: 940px) {
+    .product_body {
+        display: flex;
+        flex-direction: column;
+    }
+    .product_filter {
+        width: 100%;
+    }
+}
