@@ -27,3 +27,20 @@
     max-width: 20%;
     color: var(--theme-color);
 }
+
+@media screen and (max-width: 940px) {
+    .product_card {
+        display: flex;
+        flex-direction: column;
+        padding: auto 5%;
+        width: 100%;
+        justify-content: center;
+        /* min-width: 30%; */
+        /* min-width: 300px; */
+    }
+    .image img {
+        width: 100%;
+        height: auto;
+        border-radius: 5%;
+    }
+}
