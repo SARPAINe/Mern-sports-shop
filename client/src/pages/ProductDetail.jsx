@@ -26,6 +26,7 @@ const ProductDetail = () => {
                     // display: "inline-block",
                     marginTop: "10px",
                     marginLeft: "var(--left-space)",
+                    marginRight: "var(--left-space)",
                     // width: "200px",
                 }}
             >

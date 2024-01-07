@@ -5,7 +5,7 @@ import classes from "./ProductBody.module.css";
 
 const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const sortOptionValue = searchParams.get("sort");
+    const sortOptionValue = searchParams.get("sort") || "lowest";
 
     const onChangeHandlerSort = (event) => {
         setSearchParams((prevSearchParams) => ({

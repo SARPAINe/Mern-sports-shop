@@ -1,0 +1,36 @@
+.product_detail {
+    display: flex;
+}
+.product_detail_image {
+    padding: 2.5% 2.5% 2.5% 0;
+}
+img {
+    max-width: 100%;
+}
+.product_detail_info {
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    display: flex;
+    flex-direction: column;
+}
+.product_detail_info .name {
+    font-size: var(--logo-text-weight);
+    color: var(--theme-color);
+}
+.review {
+    display: flex;
+    align-items: center;
+}
+.description {
+    width: 100%;
+    margin-bottom: 5%;
+}
+@media screen and (max-width: 940px) {
+    .product_detail {
+        display: flex;
+        flex-direction: column;
+    }
+    img {
+        width: 100%;
+    }
+}
