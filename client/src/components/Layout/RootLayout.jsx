@@ -6,7 +6,6 @@ const RootLayout = (props) => {
     const [userName, setUserName] = useState();
     const [userId, setUserId] = useState();
     let loaderData = useLoaderData();
-    console.log(process.env.test);
 
     useEffect(() => {
         if (loaderData && loaderData !== "logged out") {

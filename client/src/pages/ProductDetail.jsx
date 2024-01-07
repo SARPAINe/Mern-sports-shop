@@ -1,11 +1,12 @@
-import { Link, useLoaderData, useLocation } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import BreadCrumb from "../components/Layout/BreadCrumb";
+import ProductDetailBody from "../components/ProductDetail/ProductDetailBody";
 
 const ProductDetail = () => {
     const loaderData = useLoaderData();
+    const navigate = useNavigate();
     const product = loaderData.product;
     const name = product.name;
-    console.log(product);
 
     let crumbs = ["Products", name];
     const backToAllProductsStyle = {
@@ -28,7 +29,15 @@ const ProductDetail = () => {
                     // width: "200px",
                 }}
             >
-                <Link style={backToAllProductsStyle}>Back to products</Link>
+                <Link
+                    style={backToAllProductsStyle}
+                    onClick={() => {
+                        navigate(-1);
+                    }}
+                >
+                    Back to products
+                </Link>
+                <ProductDetailBody product={product}></ProductDetailBody>
             </div>
         </>
     );

@@ -1,14 +1,82 @@
 .header {
-    /* position: fixed;
-    top: 0;
-    left: 0; */
     width: var(--max-width);
     margin: 0 var(--left-space);
     height: 5rem;
-    /* background-color: #8a2b06;
-    color: white; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: var(--max-width);
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding-left: var(--left-space);
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    opacity: 100%;
+}
+
+.sidenav_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 5%;
+}
+
+.hamburgerButton {
+    cursor: pointer;
+    color: var(--theme-color);
+    scale: 2;
+    display: none;
+}
+
+/* .navbar {
+    display: flex;
+    align-items: center;
+    column-gap: 150px;
+} */
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar a {
+    /* min-width: 100px; */
+    padding: 5px;
+}
+
+a {
+    padding: 0 5px;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: var(--theme-color);
+    border-bottom: 1px solid var(--theme-color);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 940px) {
+    .navbar,
+    .profile {
+        display: none;
+    }
+
+    .hamburgerButton {
+        display: block;
+    }
 }

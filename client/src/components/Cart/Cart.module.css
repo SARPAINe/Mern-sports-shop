@@ -11,3 +11,13 @@
     content: "";
     margin-left: 5px;
 }
+
+/* Media query for small screens */
+@media screen and (max-width: 940px) {
+    .cart span {
+        /* display: inline-block; */
+        color: black;
+        font-size: 16px;
+        padding-left: 5px;
+    }
+}

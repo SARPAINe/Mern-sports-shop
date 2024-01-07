@@ -1,8 +1,9 @@
-import { json, useLoaderData } from "react-router-dom";
+import { json, useLoaderData, useNavigation } from "react-router-dom";
 import ProductBody from "../components/Product/ProductBody";
 import ProductCard from "../components/Product/ProductCard";
 const Products = (props) => {
     const loaderData = useLoaderData();
+    const navigation = useNavigation();
 
     const products = loaderData.products;
     const numberOfProducts = loaderData.count;
@@ -20,11 +21,15 @@ const Products = (props) => {
     });
     return (
         <>
-            <ProductBody
-                productData={productData}
-                numberOfProducts={numberOfProducts}
-                numberOfPages={numberOfPages}
-            ></ProductBody>
+            {navigation.state == "loading" ? (
+                "loading"
+            ) : (
+                <ProductBody
+                    productData={productData}
+                    numberOfProducts={numberOfProducts}
+                    numberOfPages={numberOfPages}
+                ></ProductBody>
+            )}
         </>
     );
 };
