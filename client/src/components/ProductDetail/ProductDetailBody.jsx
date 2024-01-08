@@ -1,8 +1,38 @@
 import classes from "./ProductDetailBody.module.css";
 import ReactStars from "react-rating-stars-component";
 import _ from "lodash";
+import { useContext, useState } from "react";
+import CartContext from "../Store/cart-context";
 const ProductDetailBody = ({ product }) => {
     console.log(product);
+    const [amount, setAmount] = useState(0);
+    // const [cart, setCart] = useState(null);
+    const cartCtx = useContext(CartContext);
+
+    const increaseAmount = () => {
+        setAmount((prevAmount) => prevAmount + 1);
+    };
+
+    const decreaseAmount = () => {
+        setAmount((prevAmount) => {
+            if (prevAmount == 0) return prevAmount;
+            else return prevAmount - 1;
+        });
+    };
+
+    const addToCartHandler = () => {
+        const item = {
+            id: product._id,
+            price: product.price,
+            amount,
+        };
+        cartCtx.addItem(item);
+        // setCart({
+        //     items: cartCtx.items,
+        //     totalAmount: cartCtx.totalAmount,
+        // });
+        // console.log(cart);
+    };
     return (
         <>
             <div className={classes.product_detail}>
@@ -28,13 +58,37 @@ const ProductDetailBody = ({ product }) => {
                         className={classes.description}
                     >{`${product.description}`}</div>
                     <div>
-                        Available: &nbsp;&nbsp;
+                        <span style={{ fontWeight: "bold" }}>Available:</span>{" "}
+                        &nbsp;&nbsp;
                         {product.inventory > 0 ? "In stock" : "Out of stock"}
                     </div>
                     <div>
-                        Brand:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{ fontWeight: "bold" }}>Brand:</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         {_.capitalize(`${product.company}`)}
                     </div>
+                    <hr style={{ width: "100%" }} />
+                    <div className={classes.add_to_cart}>
+                        <span
+                            style={{ cursor: "pointer" }}
+                            onClick={decreaseAmount}
+                        >
+                            {"  "}-{"  "}
+                        </span>
+                        {amount}
+                        <span
+                            style={{ cursor: "pointer" }}
+                            onClick={increaseAmount}
+                        >
+                            {"  "}+{"  "}
+                        </span>
+                    </div>
+                    <button
+                        className={classes.add_to_cart_button}
+                        onClick={addToCartHandler}
+                    >
+                        ADD TO CART
+                    </button>
                 </div>
             </div>
         </>

@@ -7,6 +7,10 @@
     color: black;
     font-size: var(--logo-text-weight);
 }
+.cart span:hover {
+    /* display: inline-block; */
+    color: var(--theme-color);
+}
 .cart span::after {
     content: "";
     margin-left: 5px;

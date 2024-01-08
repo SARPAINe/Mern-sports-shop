@@ -12,6 +12,7 @@ import Logout from "./components/Auth/Logout";
 import { action as logoutAction } from "./components/Auth/Logout";
 import { loader as authLoader } from "./components/Layout/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
+import Cart from "./pages/Cart";
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
                         element: <ProductDetail />,
                     },
                 ],
+            },
+            {
+                path: "cart",
+                element: <Cart></Cart>,
             },
         ],
     },

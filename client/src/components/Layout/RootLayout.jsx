@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useLoaderData, json } from "react-router-dom";
 import Header from "../Layout/Header";
 import Footer from "./Footer";
+import CartProvider from "../Store/CartProvider";
 const RootLayout = (props) => {
     const [userName, setUserName] = useState();
     const [userId, setUserId] = useState();
@@ -18,12 +19,14 @@ const RootLayout = (props) => {
     }, [loaderData]);
     return (
         <>
-            <Header user={{ userName, userId }}></Header>
-            <main>
-                {/* {props.children} */}
-                <Outlet></Outlet>
-            </main>
-            <Footer />
+            <CartProvider>
+                <Header user={{ userName, userId }}></Header>
+                <main>
+                    {/* {props.children} */}
+                    <Outlet></Outlet>
+                </main>
+                <Footer />
+            </CartProvider>
         </>
     );
 };
