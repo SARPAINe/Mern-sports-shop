@@ -10,6 +10,11 @@ const Cart = (props) => {
     const cartCtx = useContext(CartContext);
     console.log(cartCtx.items);
     console.log(cartCtx.totalAmount);
+    const cart = {
+        items: cartCtx.items,
+        totalAmount: cartCtx.totalAmount,
+    };
+
     return (
         <>
             <BreadCrumb></BreadCrumb>

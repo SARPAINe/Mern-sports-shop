@@ -8,6 +8,8 @@ const ProductDetailBody = ({ product }) => {
     const [amount, setAmount] = useState(0);
     // const [cart, setCart] = useState(null);
     const cartCtx = useContext(CartContext);
+    const { items } = cartCtx;
+    console.log("items:", items);
 
     const increaseAmount = () => {
         setAmount((prevAmount) => prevAmount + 1);
@@ -27,12 +29,9 @@ const ProductDetailBody = ({ product }) => {
             amount,
         };
         cartCtx.addItem(item);
-        // setCart({
-        //     items: cartCtx.items,
-        //     totalAmount: cartCtx.totalAmount,
-        // });
-        // console.log(cart);
+        cartCtx.addToLocalStorage();
     };
+
     return (
         <>
             <div className={classes.product_detail}>
@@ -47,6 +46,7 @@ const ProductDetailBody = ({ product }) => {
                             value={product.averageRating}
                             isHalf={true}
                             size={24}
+                            edit={false}
                             activeColor={"rgb(37, 150, 190)"}
                         ></ReactStars>
                         <span>{` (${product.numOfReviews} user reviews)`}</span>

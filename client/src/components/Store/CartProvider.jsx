@@ -61,6 +61,18 @@ const cartReducer = (state, action) => {
         };
     }
 
+    if (action.type === "ADD_LOCAL") {
+        localStorage.setItem(
+            "cart",
+            JSON.stringify({
+                items: state.items,
+                totalAmount: state.totalAmount,
+            })
+        );
+        return state;
+        // console.log(state.items);
+    }
+
     if (action.type === "CLEAR") {
         return defaultCartState;
     }
@@ -70,7 +82,12 @@ const cartReducer = (state, action) => {
 const CartProvider = (props) => {
     const [cartState, dispatchCartAction] = useReducer(
         cartReducer,
-        defaultCartState
+        defaultCartState,
+        () => {
+            if (localStorage.getItem("cart") == undefined) {
+                return defaultCartState;
+            } else return JSON.parse(localStorage.getItem("cart"));
+        }
     );
 
     const addItemToCartHandler = (item) => {
@@ -85,12 +102,17 @@ const CartProvider = (props) => {
         dispatchCartAction({ type: "CLEAR" });
     };
 
+    const addToLocalStorageHandler = () => {
+        dispatchCartAction({ type: "ADD_LOCAL" });
+    };
+
     const cartContext = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
         removeItem: removeItemFromCartHandler,
         clearCart: clearCartHandler,
+        addToLocalStorage: addToLocalStorageHandler,
     };
 
     return (
