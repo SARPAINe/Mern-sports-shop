@@ -5,8 +5,15 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 const CartPage = (props) => {
     const cartCtx = useContext(CartContext);
-    const { items: cartItems } = JSON.parse(localStorage.getItem("cart"));
-    const cartIsEmpty = cartItems.length == 0 ? true : false;
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    let cartIsEmpty, cartItems;
+    if (cart == null) {
+        cartIsEmpty == true;
+        cartItems = [];
+    } else {
+        cartItems = cart.items;
+    }
+    cartIsEmpty = cartItems?.length == 0 ? true : false;
 
     const cartIsEmptyContent = (
         <div className={classes.cart_empty}>
