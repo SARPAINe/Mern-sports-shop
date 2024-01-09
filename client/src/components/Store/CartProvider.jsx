@@ -61,6 +61,26 @@ const cartReducer = (state, action) => {
         };
     }
 
+    if (action.type === "REMOVE_ITEM") {
+        const existingCartItemIndex = state.items.findIndex(
+            (item) => item.id === action.id
+        );
+
+        const existingCartItem = state.items[existingCartItemIndex];
+        const updatedTotalAmount =
+            state.totalAmount -
+            existingCartItem.price * existingCartItem.amount;
+
+        let updatedItems;
+        updatedItems = state.items.filter((item) => {
+            return item.id !== action.id;
+        });
+        return {
+            items: updatedItems,
+            totalAmount: updatedTotalAmount,
+        };
+    }
+
     if (action.type === "ADD_LOCAL") {
         localStorage.setItem(
             "cart",
@@ -94,8 +114,14 @@ const CartProvider = (props) => {
         dispatchCartAction({ type: "ADD", item: item });
     };
 
+    //remove a particular type of item one at a time
     const removeItemFromCartHandler = (id) => {
         dispatchCartAction({ type: "REMOVE", id: id });
+    };
+
+    //remove the whoe item even if the amount is greater than 1
+    const removeWholeItemFromCartHandler = (id) => {
+        dispatchCartAction({ type: "REMOVE_ITEM", id: id });
     };
 
     const clearCartHandler = () => {
@@ -111,6 +137,7 @@ const CartProvider = (props) => {
         totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
         removeItem: removeItemFromCartHandler,
+        removeWholeItem: removeWholeItemFromCartHandler,
         clearCart: clearCartHandler,
         addToLocalStorage: addToLocalStorageHandler,
     };

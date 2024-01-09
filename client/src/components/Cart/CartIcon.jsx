@@ -7,8 +7,6 @@ const CartIcon = (props) => {
     const cartCtx = useContext(CartContext);
     const { items } = cartCtx;
     const numberOfCartItem = items.reduce((curNumber, item) => {
-        console.log(`curNumber: ${curNumber}`);
-        console.log(`itme: ${item.amount}`);
         return curNumber + item.amount;
     }, 0);
 
