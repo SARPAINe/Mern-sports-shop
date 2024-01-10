@@ -22,7 +22,8 @@
 .cart_header {
     display: grid;
     /* grid-template-columns: 360px 1fr 1fr 1fr auto; */
-    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    grid-template-columns: 2.05fr 1fr 1fr 1fr auto;
+    font-size: large;
 }
 
 .cart_header div {
@@ -30,11 +31,112 @@
 }
 
 .row {
+    font-size: large;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    row-gap: 10px;
+}
+
+.row div {
+    display: flex;
+    align-items: center;
 }
 
 .cart_footer {
     display: flex;
     justify-content: space-between;
+    margin: 2.5% 0;
+}
+
+.cart_continue {
+    background-color: var(--theme-color);
+    color: white;
+    border: none;
+    border-radius: 5%;
+}
+
+.cart_continue a {
+    color: white;
+    font-size: large;
+}
+
+.cart_clear {
+    background-color: black;
+    border: none;
+    border-radius: 5%;
+    color: white;
+    font-size: large;
+}
+
+.cart_product {
+    display: flex;
+    column-gap: 5%;
+    align-items: center;
+}
+
+.cart_image {
+    width: 20%;
+    height: auto;
+}
+
+.cart_hr {
+    width: 100%;
+    background-color: var(--theme-color);
+    height: 1px;
+}
+
+.cart_checkout {
+    display: flex;
+    flex-direction: column;
+    float: right;
+}
+.cart_total {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--theme-color);
+    padding: 15px 30px;
+    margin: 50px 0 20px 0;
+    /* float: right; */
+    border-radius: 2%;
+    white-space: pre;
+    font-size: large;
+}
+.cart_checkout_footer {
+    clear: both;
+    /* float: right; */
+    background-color: var(--theme-color);
+    font-size: large;
+    margin-bottom: 10px;
+    border-radius: 3.5%;
+    text-align: center;
+}
+
+.cart_checkout_footer a:hover {
+    color: white;
+}
+
+.cart_checkout span {
+    font-weight: bold;
+    color: var(--theme-color);
+}
+
+@media screen and (max-width: 940px) {
+    .cart_header {
+        display: none;
+    }
+    .cart_hr_first {
+        display: none;
+    }
+    .cart_checkout {
+        float: none;
+        margin: 50px auto;
+        width: fit-content;
+    }
+    .cart_total,
+    .cart_checkout_footer {
+        font-size: small;
+    }
+    .row {
+        font-size: small;
+    }
 }

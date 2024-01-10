@@ -28,6 +28,7 @@ const ProductDetailBody = ({ product }) => {
             price: product.price,
             amount,
             name: product.name,
+            image: product.image,
         };
         cartCtx.addItem(item);
         cartCtx.addToLocalStorage();
