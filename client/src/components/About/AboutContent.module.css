@@ -1,25 +1,32 @@
 .about {
-    margin: var(--left-space);
+    margin: 3% var(--left-space);
     display: flex;
     justify-content: space-between;
+    height: calc(100vh - 427px);
 }
 .image {
-    width: 50%;
+    width: 48%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.image img {
+    width: 100%; /* Make the image fill the entire width of the container */
+    height: 100%; /* Make the image fill the entire height of the container */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+    object-position: center center;
+}
+
 .story {
     width: 50%;
     padding-left: 2%;
-    /* Include padding in the width calculation */
-    /* box-sizing: border-box;  */
 }
 /* max width means specified width and smaller than that */
 @media only screen and (max-width: 940px) {
     .about {
         display: grid;
+        height: fit-content;
     }
     .story {
         width: 100%;
