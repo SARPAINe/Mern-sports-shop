@@ -3,6 +3,7 @@ import ReactStars from "react-rating-stars-component";
 import _ from "lodash";
 import { useContext, useState } from "react";
 import CartContext from "../Store/cart-context";
+import ActionButton from "../Button/ActionButton";
 const ProductDetailBody = ({ product }) => {
     console.log(product);
     const [amount, setAmount] = useState(0);
@@ -85,12 +86,10 @@ const ProductDetailBody = ({ product }) => {
                             {"  "}+{"  "}
                         </span>
                     </div>
-                    <button
-                        className={classes.add_to_cart_button}
-                        onClick={addToCartHandler}
-                    >
-                        ADD TO CART
-                    </button>
+                    <ActionButton
+                        name="ADD TO CART"
+                        clickHandler={addToCartHandler}
+                    ></ActionButton>
                 </div>
             </div>
         </>

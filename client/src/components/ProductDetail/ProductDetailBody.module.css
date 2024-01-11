@@ -29,16 +29,7 @@ img {
     font-weight: bold;
     font-size: 40px;
 }
-.add_to_cart_button {
-    border: none;
-    background-color: var(--theme-color);
-    color: white;
-    width: fit-content;
-    border-radius: 5%;
-    padding: 1%;
-    font-size: 16px;
-    cursor: pointer;
-}
+
 @media screen and (max-width: 940px) {
     .product_detail {
         display: flex;

@@ -1,0 +1,9 @@
+.link {
+    background-color: var(--theme-color);
+    border: none;
+    border-radius: 5%;
+}
+.link a {
+    color: white;
+    font-size: large;
+}

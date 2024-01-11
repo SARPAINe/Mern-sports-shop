@@ -1,0 +1,64 @@
+.home_view {
+    display: flex;
+    margin: 0 var(--left-space);
+    justify-content: space-between;
+    height: calc(100vh - 195px);
+    align-items: center;
+    column-gap: 17%;
+}
+
+/* first child selects every element which
+is the first child of its parent */
+.home_view > div:first-child {
+    max-width: 50%;
+    font-size: larger;
+    /* padding: 5%; */
+}
+
+.image_container {
+    position: relative;
+    display: inline-block; /* Ensure the container only takes the space needed by the image */
+}
+
+.image_container img:first-child {
+    vertical-align: bottom; /* Align the image to the bottom of the line box */
+}
+
+.image_container img:nth-child(2) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-50%);
+    z-index: 100;
+    border-radius: 2.5%;
+}
+
+.image_container::before {
+    content: "";
+    position: absolute;
+    /* top: 0;
+    right: 0; */
+    bottom: 0;
+    left: -10%;
+    margin: auto;
+    width: 10%;
+    height: 80%;
+    background-color: var(--theme-color-light);
+    z-index: 1; /* Place it in front of the image */
+    border-radius: 2.5%;
+}
+
+@media screen and (max-width: 940px) {
+    .image_container {
+        display: none;
+    }
+
+    .home_view {
+        height: calc(100vh - 600px);
+        font-size: small;
+    }
+
+    .home_view > div:first-child {
+        max-width: 100%;
+    }
+}

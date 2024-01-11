@@ -1,0 +1,10 @@
+.action {
+    border: none;
+    background-color: var(--theme-color);
+    color: white;
+    width: fit-content;
+    border-radius: 5%;
+    padding: 1%;
+    font-size: 16px;
+    cursor: pointer;
+}

@@ -3,6 +3,8 @@ import CartContext from "../Store/cart-context";
 import classes from "./CartPage.module.css";
 import { MdDelete } from "react-icons/md";
 import { Link, useRouteLoaderData } from "react-router-dom";
+import LinkButton from "../Button/LinkButton";
+import ActionButton from "../Button/ActionButton";
 const CartPage = (props) => {
     const cartCtx = useContext(CartContext);
     const cart = JSON.parse(localStorage.getItem("cart"));
@@ -117,15 +119,24 @@ const CartPage = (props) => {
                     {cartValues}
                     <hr className={classes.cart_hr}></hr>
                     <div className={classes.cart_footer}>
-                        <button className={classes.cart_continue}>
-                            <Link to={"/products"}>Continue Shopping</Link>
-                        </button>
-                        <button
+                        <LinkButton
+                            name="Continue Shopping"
+                            link="/products"
+                        ></LinkButton>
+                        {/* <button
                             className={classes.cart_clear}
                             onClick={clearCart}
                         >
                             Clear Cart
-                        </button>
+                        </button> */}
+                        <ActionButton
+                            style={{
+                                backgroundColor: "black",
+                                color: "white",
+                            }}
+                            clickHandler={clearCart}
+                            name="Clear Cart"
+                        ></ActionButton>
                     </div>
                     <div className={classes.cart_checkout}>
                         <div className={classes.cart_total}>
