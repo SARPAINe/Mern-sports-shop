@@ -18,7 +18,7 @@ const getAllProducts = async (req, res) => {
 
     const queryObject = {};
     if (search) {
-        queryObject.position = { $regex: search, $options: i };
+        queryObject.name = { $regex: search, $options: "i" };
     }
     if (category && category !== "all") {
         queryObject.category = category;
@@ -53,6 +53,7 @@ const getAllProducts = async (req, res) => {
 
     const count = await Product.countDocuments(queryObject);
     const numOfPages = Math.ceil(count / limit);
+    console.log(count);
 
     res.status(StatusCodes.OK).json({ products, count, numOfPages });
 };
