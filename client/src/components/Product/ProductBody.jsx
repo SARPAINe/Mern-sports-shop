@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import BreadCrumb from "../Layout/BreadCrumb";
 import Pagination from "./Pagination";
 import classes from "./ProductBody.module.css";
+import _ from "lodash";
 
 const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     const [searchParams, setSearchParams] = useSearchParams();

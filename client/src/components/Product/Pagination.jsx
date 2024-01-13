@@ -38,9 +38,10 @@ const Pagination = ({ linkContents, numberOfPages }) => {
                 linkValues[index] == null ? classes["button-disabled"] : ""
             }`}
             disabled={linkValues[index] == null}
+            key={link}
         >
             <Link
-                key={index}
+                key={link}
                 className={
                     linkValues[index] == null ? classes[`disabled-link`] : ""
                 }

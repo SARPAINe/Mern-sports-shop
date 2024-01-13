@@ -1,6 +1,7 @@
 import { json, useLoaderData, useNavigation } from "react-router-dom";
 import ProductBody from "../components/Product/ProductBody";
 import ProductCard from "../components/Product/ProductCard";
+import { random } from "lodash";
 const Products = (props) => {
     const loaderData = useLoaderData();
     const navigation = useNavigation();
