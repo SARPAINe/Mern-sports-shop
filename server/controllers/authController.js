@@ -1,3 +1,4 @@
+require("dotenv").config();
 const User = require("../models/User");
 const Token = require("../models/Token");
 const { StatusCodes } = require("http-status-codes");
@@ -16,7 +17,6 @@ const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     const emailAlreadyExists = await User.findOne({ email });
-    console.log(emailAlreadyExists);
     if (emailAlreadyExists) {
         throw new CustomError.BadRequestError("Email already exists");
     }
@@ -24,34 +24,52 @@ const register = async (req, res) => {
     const isFirstAccount = (await User.countDocuments({})) === 0;
     const role = isFirstAccount ? "admin" : "user";
 
-    const verificationToken = crypto.randomBytes(40).toString("hex");
+    let verificationToken, user;
+    console.log(`Email verification: ${process.env.EMAIL_VERIFICATION}`);
+    //since its coming from .env file value is string
+    if (process.env.EMAIL_VERIFICATION == "true") {
+        verificationToken = crypto.randomBytes(40).toString("hex");
+        user = await User.create({
+            name,
+            email,
+            password,
+            role,
+            verificationToken,
+        });
+        const origin = "http://localhost:3000";
 
-    const user = await User.create({
-        name,
-        email,
-        password,
-        role,
-        verificationToken,
-    });
+        // const tempOrigin = req.get('origin');
+        // const protocol = req.protocol;
+        // const host = req.get('host');
+        // const forwardedHost = req.get('x-forwarded-host');
+        // const forwardedProtocol = req.get('x-forwarded-proto');
 
-    const origin = "http://localhost:3000";
+        await sendVerificationEmail({
+            name: user.name,
+            email: user.email,
+            verificationToken: user.verificationToken,
+            origin,
+        });
+        //send verification token back only while testing in postman!!
+        res.status(StatusCodes.CREATED).json({
+            msg: "Success! Please check your email to verify account",
+        });
+    } else {
+        verificationToken = "";
+        user = await User.create({
+            name,
+            email,
+            password,
+            role,
+            verificationToken,
+            isVerified: true,
+            verified: Date.now(),
+        });
 
-    // const tempOrigin = req.get('origin');
-    // const protocol = req.protocol;
-    // const host = req.get('host');
-    // const forwardedHost = req.get('x-forwarded-host');
-    // const forwardedProtocol = req.get('x-forwarded-proto');
-
-    await sendVerificationEmail({
-        name: user.name,
-        email: user.email,
-        verificationToken: user.verificationToken,
-        origin,
-    });
-    //send verification token back only while testing in postman!!
-    res.status(StatusCodes.CREATED).json({
-        msg: "Success! Please check your email to verify account",
-    });
+        res.status(StatusCodes.CREATED).json({
+            msg: "Success! User Registered",
+        });
+    }
 
     // const tokenUser = createTokenUser(user);
 
