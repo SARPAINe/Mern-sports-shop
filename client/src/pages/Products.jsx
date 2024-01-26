@@ -7,6 +7,7 @@ const Products = (props) => {
     const navigation = useNavigation();
 
     const products = loaderData.products;
+    console.log(loaderData);
     const numberOfProducts = loaderData.count;
     const numberOfPages = loaderData.numOfPages;
     const productData = products.map(({ _id, name, image, price }) => {
@@ -23,7 +24,7 @@ const Products = (props) => {
     return (
         <>
             {navigation.state == "loading" ? (
-                "loading"
+                <p style={{ marginLeft: "var(--left-space)" }}>loading</p>
             ) : (
                 <ProductBody
                     productData={productData}
@@ -44,11 +45,15 @@ export const productLoader = async ({ request }) => {
     const url = new URL(request.url);
     const page = url.searchParams.get("page");
     const sort = url.searchParams.get("sort");
+    const search = url.searchParams.get("search");
     if (page) {
         finalRequestUrl.searchParams.append("page", page);
     }
     if (sort) {
         finalRequestUrl.searchParams.append("sort", sort);
+    }
+    if (search) {
+        finalRequestUrl.searchParams.append("search", search);
     }
 
     const response = await fetch(finalRequestUrl.href);

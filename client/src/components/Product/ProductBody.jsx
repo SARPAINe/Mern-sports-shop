@@ -3,10 +3,14 @@ import BreadCrumb from "../Layout/BreadCrumb";
 import Pagination from "./Pagination";
 import classes from "./ProductBody.module.css";
 import _ from "lodash";
+import { useState } from "react";
+import ActionButton from "../Button/ActionButton";
 
 const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const sortOptionValue = searchParams.get("sort") || "lowest";
+    const searchTermValue = searchParams.get("search");
+    const [searchTerm, setSearchTerm] = useState(searchTermValue || "");
 
     const onChangeHandlerSort = (event) => {
         setSearchParams((prevSearchParams) => ({
@@ -15,6 +19,14 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
         }));
     };
 
+    const onSearchInputChange = (event) => {
+        setSearchTerm(event.target.value);
+        // setSearchParams({ search: event.target.value });
+    };
+
+    const searchHandler = () => {
+        setSearchParams({ search: searchTerm });
+    };
     const productInfoContent = (
         <div className={classes.product_info}>
             <p>{`${numberOfProducts} items found`}</p>
@@ -55,22 +67,26 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
             <BreadCrumb></BreadCrumb>
             <div className={classes.product_body}>
                 <section className={classes.product_filter}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Sequi non pariatur quo repudiandae architecto? Minima nulla
-                    maxime ea porro nihil, perspiciatis nostrum distinctio est
-                    id aspernatur temporibus dignissimos vitae adipisci? Lorem
-                    ipsum dolor sit, amet consectetur adipisicing elit. Sequi
-                    non pariatur quo repudiandae architecto? Minima nulla maxime
-                    ea porro nihil, perspiciatis nostrum distinctio est id
-                    aspernatur temporibus dignissimos vitae adipisci? Lorem
-                    ipsum dolor sit, amet consectetur adipisicing elit. Sequi
-                    non pariatur quo repudiandae architecto? Minima nulla maxime
-                    ea porro nihil, perspiciatis nostrum distinctio est id
-                    aspernatur temporibus dignissimos vitae adipisci?
+                    <div className={classes.search}>
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            value={searchTerm}
+                            onChange={onSearchInputChange}
+                        ></input>
+                        <ActionButton
+                            name="SEARCH"
+                            clickHandler={searchHandler}
+                        ></ActionButton>
+                    </div>
+                    <div className={classes.category}>
+                        <div>Category</div>
+                        <div>All</div>
+                        <div>Football</div>
+                        <div>Jersey</div>
+                        <div>Boots</div>
+                    </div>
                 </section>
-                {/* <section className={classes.product_data}>
-                        {productData}
-                    </section> */}
                 <section className={classes.products}>
                     {productInfoContent}
                     <div className={classes.product_data}>{productData}</div>

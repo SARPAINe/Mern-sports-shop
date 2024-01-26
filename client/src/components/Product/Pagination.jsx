@@ -1,15 +1,14 @@
 import { Link, useSearchParams } from "react-router-dom";
 import classes from "./Pagination.module.css";
 const Pagination = ({ linkContents, numberOfPages }) => {
-    console.log("entered");
     const [searchParams, setSearchParams] = useSearchParams();
     const linkValues = [...linkContents];
     let page = searchParams.get("page");
     const sort = searchParams.get("sort");
-    console.log(sort);
+    const search = searchParams.get("search");
     const category = searchParams.get("category");
     let queryParams;
-    if (sort || page) {
+    if (sort || page || search || category) {
         queryParams = "?";
     }
     let queryArray = [];
@@ -19,8 +18,11 @@ const Pagination = ({ linkContents, numberOfPages }) => {
     if (category) {
         queryArray.push(`category=${category}`);
     }
+    if (search) {
+        queryArray.push(`search=${search}`);
+    }
     queryParams += queryArray.join("&");
-    console.log(`query params: ${queryParams}`);
+    // console.log(`query params: ${queryParams}`);
     if (!page || page === "1") {
         page = String(Number(page) + 1);
         linkValues[0] = null;
