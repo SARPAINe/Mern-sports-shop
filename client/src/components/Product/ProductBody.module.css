@@ -83,9 +83,27 @@
     cursor: pointer;
 }
 
+.category_list li:hover {
+    color: var(--theme-color);
+}
 .category_list li.selected {
     text-decoration: underline;
 }
+
+.company {
+    margin-bottom: 16px;
+}
+.company_heading {
+    color: var(--theme-color);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.company select {
+    background-color: var(--theme-color-light-2x);
+    font-weight: bold;
+    border-radius: 4%;
+}
+
 @media screen and (max-width: 1590px) {
     .product_data {
         display: grid;

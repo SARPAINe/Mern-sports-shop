@@ -39,7 +39,7 @@ export default Products;
 
 export const productLoader = async ({ request }) => {
     //server url
-    const requestUrl = `${process.env.server_url}/api/v1/products`;
+    const requestUrl = `${process.env.server_url}/api/v1/products?sort=lowest`;
     const finalRequestUrl = new URL(requestUrl);
     //request.url is client url
     const url = new URL(request.url);
@@ -49,7 +49,13 @@ export const productLoader = async ({ request }) => {
     // Append non-null query parameters to the product API URL
     params.forEach((param) => {
         const value = url.searchParams.get(param);
-        if (value) finalRequestUrl.searchParams.append(param, value);
+        if (value) {
+            if (!finalRequestUrl.searchParams.get(param))
+                finalRequestUrl.searchParams.append(param, value);
+            else {
+                finalRequestUrl.searchParams.set(param, value);
+            }
+        }
     });
 
     const response = await fetch(finalRequestUrl.href);

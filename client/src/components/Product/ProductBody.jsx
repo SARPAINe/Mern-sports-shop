@@ -8,17 +8,32 @@ import ActionButton from "../Button/ActionButton";
 
 const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     const [searchParams, setSearchParams] = useSearchParams();
+    console.log(searchParams.has("category"));
     const sortOptionValue = searchParams.get("sort") || "lowest";
-    const searchTermValue = searchParams.get("search");
-    const categoryTermValue = searchParams.get("category");
-    const [searchTerm, setSearchTerm] = useState(searchTermValue || "");
+    const searchParamValue = searchParams.get("search");
+    const categoryParamValue = searchParams.get("category") || "all";
+    const companyParamValue = searchParams.get("company") || "all";
+    console.log(`companyParamValue: ${companyParamValue}`);
+    const [searchTerm, setSearchTerm] = useState(searchParamValue || "");
     const [selectedCategory, setSelectedCategory] = useState(
-        categoryTermValue || "all"
+        categoryParamValue || "all"
     );
 
+    const clearFilter = () => {
+        setSearchParams();
+    };
+
     const onChangeHandlerSort = (event) => {
+        // setSearchParams((prevSearchParams) => {
+        //     const searchParams = {};
+        //     prevSearchParams.forEach((value, key) => {
+        //         searchParams[key] = value;
+        //     });
+        //     searchParams["sort"] = event.target.value;
+        //     return searchParams;
+        // });
         setSearchParams((prevSearchParams) => ({
-            ...prevSearchParams,
+            ...Object.fromEntries(prevSearchParams),
             sort: event.target.value,
         }));
     };
@@ -29,11 +44,47 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     };
 
     const onCategoryInputChange = (category) => {
-        if (category !== "all") {
-            setSearchParams({ category });
-        } else {
-            setSearchParams();
-        }
+        // if (category !== "all") {
+        //     setSearchParams((prevSearchParams) => {
+        //         const searchParams = {};
+        //         prevSearchParams.forEach((value, key) => {
+        //             searchParams[key] = value;
+        //         });
+        //         searchParams["category"] = category;
+        //         return searchParams;
+        //     });
+        // } else {
+        //     setSearchParams((prevSearchParams) => {
+        //         const searchParams = {};
+        //         prevSearchParams.forEach((value, key) => {
+        //             if (key !== "category") searchParams[key] = value;
+        //         });
+        //         return searchParams;
+        //     });
+        // }
+        setSearchParams((prevSearchParams) => {
+            const searchParams = { ...Object.fromEntries(prevSearchParams) };
+
+            if (category !== "all") {
+                searchParams["category"] = category;
+            } else {
+                delete searchParams["category"];
+            }
+
+            return searchParams;
+        });
+    };
+
+    const onCompanyInputChange = (event) => {
+        setSearchParams((prevSearchParams) => {
+            const searchParams = { ...Object.fromEntries(prevSearchParams) };
+            if (company !== "all") {
+                searchParams["company"] = event.target.value;
+            } else {
+                delete searchParams["company"];
+            }
+            return searchParams;
+        });
     };
 
     const searchHandler = () => {
@@ -143,6 +194,32 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
                                 Boots
                             </li>
                         </ul>
+                    </div>
+                    <div className={classes.company}>
+                        <div className={classes.company_heading}>Company</div>
+                        <select
+                            name="company"
+                            id="company"
+                            className={classes[`company_input`]}
+                            onChange={onCompanyInputChange}
+                            value={companyParamValue}
+                        >
+                            <option value="all">All</option>
+                            <option value="adidas">Adidas</option>
+                            <option value="puma">Puma</option>
+                            <option value="nike">Nike</option>
+                        </select>
+                    </div>
+                    <div className={classes.clear}>
+                        <ActionButton
+                            style={{
+                                backgroundColor: "red",
+                                color: "white",
+                                padding: "5px",
+                            }}
+                            clickHandler={clearFilter}
+                            name="Clear Filters"
+                        ></ActionButton>
                     </div>
                 </section>
                 <section className={classes.products}>
