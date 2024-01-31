@@ -14,6 +14,7 @@
 }
 .search {
     width: 100%;
+    margin-top: 16;
 }
 
 .search input {
@@ -22,7 +23,8 @@
     padding: 10px 10px;
     background-color: var(--theme-color-light-2x);
     font-size: large;
-    margin-bottom: 2%;
+    margin-bottom: 3%;
+    margin-top: 16px;
 }
 .products {
     display: flex;
@@ -61,6 +63,29 @@
     justify-content: end;
 }
 
+.category {
+    padding: 16px 0;
+}
+
+.category_heading {
+    color: var(--theme-color);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.category_list {
+    padding: 0;
+    margin: 0;
+}
+
+.category_list li {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.category_list li.selected {
+    text-decoration: underline;
+}
 @media screen and (max-width: 1590px) {
     .product_data {
         display: grid;
@@ -79,6 +104,16 @@
     }
     .products {
         width: 100%;
+    }
+    .search {
+        margin-right: var(--left-space);
+    }
+
+    .search input {
+        width: 100%;
+        /* padding and border of the input are included
+        in specified width*/
+        box-sizing: border-box;
     }
 }
 

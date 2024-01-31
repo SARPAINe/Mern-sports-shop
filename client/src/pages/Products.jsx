@@ -41,20 +41,16 @@ export const productLoader = async ({ request }) => {
     //server url
     const requestUrl = `${process.env.server_url}/api/v1/products`;
     const finalRequestUrl = new URL(requestUrl);
-
+    //request.url is client url
     const url = new URL(request.url);
-    const page = url.searchParams.get("page");
-    const sort = url.searchParams.get("sort");
-    const search = url.searchParams.get("search");
-    if (page) {
-        finalRequestUrl.searchParams.append("page", page);
-    }
-    if (sort) {
-        finalRequestUrl.searchParams.append("sort", sort);
-    }
-    if (search) {
-        finalRequestUrl.searchParams.append("search", search);
-    }
+
+    const params = ["page", "sort", "search", "category", "company"];
+
+    // Append non-null query parameters to the product API URL
+    params.forEach((param) => {
+        const value = url.searchParams.get(param);
+        if (value) finalRequestUrl.searchParams.append(param, value);
+    });
 
     const response = await fetch(finalRequestUrl.href);
 

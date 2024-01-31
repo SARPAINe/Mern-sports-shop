@@ -10,7 +10,11 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const sortOptionValue = searchParams.get("sort") || "lowest";
     const searchTermValue = searchParams.get("search");
+    const categoryTermValue = searchParams.get("category");
     const [searchTerm, setSearchTerm] = useState(searchTermValue || "");
+    const [selectedCategory, setSelectedCategory] = useState(
+        categoryTermValue || "all"
+    );
 
     const onChangeHandlerSort = (event) => {
         setSearchParams((prevSearchParams) => ({
@@ -22,6 +26,14 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
     const onSearchInputChange = (event) => {
         setSearchTerm(event.target.value);
         // setSearchParams({ search: event.target.value });
+    };
+
+    const onCategoryInputChange = (category) => {
+        if (category !== "all") {
+            setSearchParams({ category });
+        } else {
+            setSearchParams();
+        }
     };
 
     const searchHandler = () => {
@@ -80,11 +92,57 @@ const ProductBody = ({ productData, numberOfProducts, numberOfPages }) => {
                         ></ActionButton>
                     </div>
                     <div className={classes.category}>
-                        <div>Category</div>
-                        <div>All</div>
-                        <div>Football</div>
-                        <div>Jersey</div>
-                        <div>Boots</div>
+                        <div className={classes.category_heading}>Category</div>
+                        <ul className={classes.category_list}>
+                            <li
+                                className={
+                                    selectedCategory === "all"
+                                        ? classes["selected"]
+                                        : ""
+                                }
+                                onClick={() => {
+                                    onCategoryInputChange("all");
+                                }}
+                            >
+                                All
+                            </li>
+                            <li
+                                className={
+                                    selectedCategory === "football"
+                                        ? classes["selected"]
+                                        : ""
+                                }
+                                onClick={() => {
+                                    onCategoryInputChange("football");
+                                }}
+                            >
+                                Football
+                            </li>
+                            <li
+                                className={
+                                    selectedCategory === "jersey"
+                                        ? classes["selected"]
+                                        : ""
+                                }
+                                onClick={() => {
+                                    onCategoryInputChange("jersey");
+                                }}
+                            >
+                                Jersey
+                            </li>
+                            <li
+                                className={
+                                    selectedCategory === "boots"
+                                        ? classes["selected"]
+                                        : ""
+                                }
+                                onClick={() => {
+                                    onCategoryInputChange("boots");
+                                }}
+                            >
+                                Boots
+                            </li>
+                        </ul>
                     </div>
                 </section>
                 <section className={classes.products}>
