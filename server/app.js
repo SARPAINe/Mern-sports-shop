@@ -54,7 +54,16 @@ app.use(helmet());
 //     })
 // );
 app.use(function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+    // const allowedOrigins = ["http://localhost:5173", "http://192.168.0.106:5173"];
+    // const origin = req.headers.origin;
+
+    // if (allowedOrigins.includes(origin)) {
+    //     res.setHeader("Access-Control-Allow-Origin", origin);
+    // }
+
+    const origin = process.env.CLIENT_URL;
+
+    res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader(
         "Access-Control-Allow-Methods",
         "GET, POST, PUT, PATCH, DELETE"
