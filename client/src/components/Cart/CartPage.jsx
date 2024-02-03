@@ -96,7 +96,14 @@ const CartPage = (props) => {
     });
 
     const checkoutContent = loaderData?.user ? (
-        <Link to={"/checkout"}>Checkout</Link>
+        <Link
+            to={"/checkout"}
+            // state={{
+            //     amount: Number((cartCtx.totalAmount + 5).toFixed(2)) * 100,
+            // }}
+        >
+            Checkout
+        </Link>
     ) : (
         <Link to={"/login"}>Login</Link>
     );

@@ -13,6 +13,7 @@ import { action as logoutAction } from "./components/Auth/Logout";
 import { loader as authLoader } from "./components/Layout/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: "cart",
                 element: <Cart></Cart>,
+            },
+            {
+                path: "checkout",
+                element: <Checkout></Checkout>,
             },
         ],
     },
